@@ -1,0 +1,47 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Campaña Donación</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">CARITAS FELICES</div>
+            <ul class="nav-links">
+                <li><a href="#">SOBRE NOSOTROS</a></li>
+                <li><a href="{% url 'campanas_activas' %}">CAMPAÑAS ACTIVAS</a></li>
+                <li><a href="#">DONACIONES</a></li>
+            </ul>
+            <button class="donate-button">QUIERO DONAR</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h2>Crear Campaña de Donación</h2>
+        <p>En esta sección se encuentra tres botones para poder crear una campaña de donación, otro para modificar la campaña y uno más para poder eliminar las campañas que ya se cumplieron.</p>
+
+        <form action="{% url 'crear_campana' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="campaign-name">Nombre de la campaña</label>
+            <input type="text" id="campaign-name" name="campaign_name" required>
+
+            <label for="description">Descripción</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="image-upload" class="image-upload-label">
+                Selecciona la foto para la campaña
+                <input type="file" id="image-upload" name="campaign_image" accept="image/*">
+            </label>
+
+            <button type="submit" class="create-button">Crear campaña de donación +</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- tu_template.html -->
+{% load static %}
+
+<!-- campanas_activas.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Asegúrate de que la ruta sea correcta -->
+    <title>Campañas Activas</title>
+</head>
+<body>
+    <h1>Campañas Activas</h1>
+    <div class="container">
+        {% for campana in campanas %}
+            <div class="card">
+                <img src="{{ campana.campaign_image.url }}" alt="{{ campana.campaign_name }}" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">{{ campana.campaign_name }}</h2>
+                    <p class="card-description">{{ campana.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
